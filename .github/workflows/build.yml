@@ -90,4 +90,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.target }}
-          path: yrs/target/${{ matrix.target }}/release/*yrs.*
+          path: |
+            yrs/target/${{ matrix.target }}/release/*yrs.dll
+            yrs/target/${{ matrix.target }}/release/*yrs.so
+            yrs/target/${{ matrix.target }}/release/*yrs.dylib
