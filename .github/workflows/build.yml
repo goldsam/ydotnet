@@ -2,11 +2,14 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
-    tags:
-      - v*
-  pull_request:
-    branches: [ main ]
+    branches: [ binaries ]
+  
+  # push:
+  #   branches: [ main ]
+  #   tags:
+  #     - v*
+  # pull_request:
+  #   branches: [ main ]
 
 env:
   YRS_BRANCH: release-v0.16.10
