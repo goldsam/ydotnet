@@ -26,6 +26,7 @@ jobs:
             os: ubuntu-latest
             rust: stable
             target: x86_64-unknown-linux-musl
+            x86_64-alpine-linux-musl
             cross: false
           - build: arm-v7
             os: ubuntu-latest
@@ -84,4 +85,4 @@ jobs:
       - name: Build
         run: |
           cd yrs
-          cargo build --release --target ${{ matrix.target }}
+          RUSTFLAGS=-Ctarget-feature=-crt-static cargo build --release --target ${{ matrix.target }}
