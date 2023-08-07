@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - v*
+  pull_request:
+    branches: [ main ]
+
+env:
+  YRS_BRANCH: release-v0.16.10
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build-native-binaries:
+    name: Build native binaries
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        include:
+          - build: linux
+            os: ubuntu-latest
+            rust: stable
+            target: x86_64-unknown-linux-musl
+            cross: false
+          - build: arm-v7
+            os: ubuntu-latest
+            rust: stable
+            target: armv7-unknown-linux-gnueabihf
+            linker: gcc-arm-linux-gnueabihf
+            cross: true
+          - build: aarch64
+            os: ubuntu-latest
+            rust: stable
+            target: aarch64-unknown-linux-gnu
+            linker: gcc-aarch64-linux-gnu
+            cross: true
+          - build: macos
+            os: macos-latest
+            rust: stable
+            target: x86_64-apple-darwin
+            cross: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ~/.rustup
+            target
+          key: ${{ runner.os }}-${{ matrix.rust }}
+
+      - name: Install Linker
+        if: matrix.cross
+        run: |
+          sudo apt update
+          sudo apt install ${{ matrix.linker }}
+          cat .cargo/config.github >> .cargo/config
+
+      - name: Install Rust
+        run: |
+          rustup install ${{ matrix.rust }}
+          rustup target add ${{ matrix.target }}
+          rustup show
+
+      - name: Clone Yrs repo
+        run: |
+          git clone https://github.com/y-crdt/y-crdt.git --branch ${YRS_BRANCH} --single-branch yrs
+
+      - name: Patch yffi/Cargo.toml
+        run: |
+          patch yrs/yffi/Cargo.toml resources/path/yffi/Cargo.toml.patch
+
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }}
