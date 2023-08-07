@@ -85,3 +85,9 @@ jobs:
         run: |
           cd yrs
           RUSTFLAGS=-Ctarget-feature=-crt-static cargo build --release --target ${{ matrix.target }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.target }}
+          path: yrs/target/${{ matrix.target }}/release/*yrs.*
