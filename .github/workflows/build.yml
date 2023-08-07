@@ -79,7 +79,7 @@ jobs:
 
       - name: Patch yffi/Cargo.toml
         run: |
-          patch yrs/yffi/Cargo.toml resources/path/yffi/Cargo.toml.patch
+          patch yrs/yffi/Cargo.toml resources/patch/yffi/Cargo.toml.patch
 
       - name: Build
         run: cargo build --release --target ${{ matrix.target }}
