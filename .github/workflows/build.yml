@@ -106,7 +106,7 @@ jobs:
       - name: Build
         run: |
           cd yrs
-          ${matrix.cargo_vars} RUSTFLAGS=-Ctarget-feature=-crt-static cargo build --release --target ${{ matrix.target }}
+          ${{ matrix.cargo_vars }} RUSTFLAGS=-Ctarget-feature=-crt-static cargo build --release --target ${{ matrix.target }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
