@@ -52,10 +52,6 @@ jobs:
             target: armv7-unknown-linux-musleabihf
             linker: gcc-arm-linux-gnueabihf
             cross: true
-            cargo_vars: >
-              CARGO_TARGET_ARMV7_UNKNOWN_LINUX_MUSLEABIHF_LINKER=arm-linux-musleabihf-gcc
-              CC_armv7_unknown_linux_musleabihf=arm-linux-musleabihf-gcc
-              CXX_armv7_unknown_linux_musleabihf=arm-linux-musleabihf-g++
           - build: aarch64
             os: ubuntu-latest
             rust: stable
@@ -109,7 +105,7 @@ jobs:
       - name: Build
         run: |
           cd yrs
-          ${{ matrix.cargo_vars }} RUSTFLAGS=-Ctarget-feature=-crt-static cargo build --release --target ${{ matrix.target }}
+          RUSTFLAGS="-C target-feature=-crt-static" cargo build --release --target ${{ matrix.target }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
