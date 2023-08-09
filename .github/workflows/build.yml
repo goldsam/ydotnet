@@ -81,13 +81,17 @@ jobs:
             target
           key: ${{ runner.os }}-${{ matrix.rust }}
 
+      - name: Add musl tools
+        run: sudo apt install -y musl musl-dev musl-tools
+        if: endsWith(matrix.build, '-musl')
+
       - name: Install Linker
         if: matrix.cross
         run: |
           sudo apt update
           sudo apt install ${{ matrix.linker }}
           cat .cargo/config.github >> .cargo/config
-
+          
       - name: Install Rust
         run: |
           rustup install ${{ matrix.rust }}
