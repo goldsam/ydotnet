@@ -81,6 +81,12 @@ jobs:
             target
           key: ${{ runner.os }}-${{ matrix.rust }}
 
+      - name: Install cross
+        if: matrix.cross
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cross
+
       - name: Add musl tools
         run: sudo apt install -y musl musl-dev musl-tools
         if: endsWith(matrix.build, '-musl')
@@ -106,10 +112,17 @@ jobs:
         run: |
           patch yrs/yffi/Cargo.toml resources/patch/yffi/Cargo.toml.patch
 
-      - name: Build
+      - name: Build (cargo)
+        if: "!matrix.cross"
         run: |
           cd yrs
           RUSTFLAGS="-C target-feature=-crt-static" cargo build --release --target ${{ matrix.target }}
+
+      - name: Build (cross)
+        if: matrix.cross
+        run: |
+          cd yrs
+          RUSTFLAGS="-C target-feature=-crt-static" cross build --release --target ${{ matrix.target }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
