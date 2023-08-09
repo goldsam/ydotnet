@@ -52,7 +52,10 @@ jobs:
             target: armv7-unknown-linux-musleabihf
             linker: gcc-arm-linux-gnueabihf
             cross: true
-            cargo_vars: CARGO_TARGET_ARM_UNKNOWN_LINUX_MUSLEABIHF_LINKER=arm-linux-gnueabihf-ld REALGCC=arm-linux-gnueabihf-gcc-8 TARGET_CC=musl-gcc
+            cargo_vars: >
+              CARGO_TARGET_ARMV7_UNKNOWN_LINUX_MUSLEABIHF_LINKER=arm-linux-musleabihf-gcc
+              CC_armv7_unknown_linux_musleabihf=arm-linux-musleabihf-gcc
+              CXX_armv7_unknown_linux_musleabihf=arm-linux-musleabihf-g++
           - build: aarch64
             os: ubuntu-latest
             rust: stable
