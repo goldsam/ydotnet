@@ -168,7 +168,7 @@ jobs:
       - name: Nuget pack
         run: |
           cd NativeAssets
-          nuget pack YDotNet.NativeAssets.${{ matrix.target }}.nuspec
+          nuget pack YDotNet.NativeAssets.${{ matrix.pkg }}.nuspec
           
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
