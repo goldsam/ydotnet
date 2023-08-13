@@ -158,7 +158,6 @@ jobs:
         with:
           sparse-checkout: |
             NativeAssets
-          sparse-checkout-cone-mode: false
      
       - name: Download artifacts
         uses: actions/download-artifact@v3
