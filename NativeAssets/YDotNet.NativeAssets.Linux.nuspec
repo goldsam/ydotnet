@@ -16,7 +16,7 @@ YDotNet provides cross=platform .Net bindings for the Yrs Rust port of Yjs.
     <!--<iconUrl></iconUrl>-->
     <tags>Yrs Yjs offline-first peer-to-peer decentralized realtime p2p collaboration shared-editing collarative-editing conflict-free CRDT distributed cross-platform</tags>
     <!-- legal -->
-    <licenseUrl>https://github.com/LSViana/ydotnet/LICENSE</licenseUrl>
+    <license type="expression">MIT</license>
     <authors>Lucas Viana</authors>
     <owners>Lucas Viana</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -54,6 +54,6 @@ YDotNet provides cross=platform .Net bindings for the Yrs Rust port of Yjs.
     <file src="linux-arm64-musl/libyrs.so" target="runtimes/linux-musl-arm64/native/libyrs.so" />
 
     <!-- legal -->
-    <!--<file src="LICENSE" />-->
+    <file src="../LICENSE" />
   </files>
 </package>
