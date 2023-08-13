@@ -120,7 +120,7 @@ jobs:
           patch yrs/yffi/Cargo.toml resources/patch/yffi/Cargo.toml.patch
 
       - name: Build (cargo)
-        if: !matrix.cross
+        if: "!matrix.cross"
         run: |
           cd yrs
           RUSTFLAGS="-C target-feature=-crt-static" cargo build --release --target ${{ matrix.target }}
