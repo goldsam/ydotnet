@@ -159,3 +159,9 @@ jobs:
           cd NativeAssets
           nuget pack YDotNet.NativeAssets.Linux.nuspec
           
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-nuget
+          path: |
+            *.nupkg
