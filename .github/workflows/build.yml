@@ -26,52 +26,52 @@ jobs:
         include:
           # Windows
           - build: win-x64
-            os: ubuntu-latest
+            os: windows-latest
             rust: stable
-            target: x86_64-pc-windows-gnu
+            target: x86_64-pc-windows-msvc
             linker: mingw-w64
-            cross: true
-          # Linux
-          - build: linux-x64
-            os: ubuntu-latest
-            rust: stable
-            target: x86_64-unknown-linux-gnu
             cross: false
-          - build: linux-x64-musl
-            os: ubuntu-latest
-            rust: stable
-            target: x86_64-unknown-linux-musl
-            cross: false
-          - build: linux-armv7
-            os: ubuntu-latest
-            rust: stable
-            target: armv7-unknown-linux-gnueabihf
-            linker: gcc-arm-linux-gnueabihf
-            cross: true
-          - build: linux-armv7-musl
-            os: ubuntu-latest
-            rust: stable
-            target: armv7-unknown-linux-musleabihf
-            linker: gcc-arm-linux-gnueabihf
-            cross: true
-          - build: linux-arm64
-            os: ubuntu-latest
-            rust: stable
-            target: aarch64-unknown-linux-gnu
-            linker: gcc-aarch64-linux-gnu
-            cross: true
-          - build: linux-arm64-musl
-            os: ubuntu-latest
-            rust: stable
-            target: aarch64-unknown-linux-musl
-            linker: gcc-aarch64-linux-gnu
-            cross: true
-          # macOS
-          - build: macos
-            os: macos-latest
-            rust: stable
-            target: x86_64-apple-darwin
-            cross: false
+          # # Linux
+          # - build: linux-x64
+          #   os: ubuntu-latest
+          #   rust: stable
+          #   target: x86_64-unknown-linux-gnu
+          #   cross: false
+          # - build: linux-x64-musl
+          #   os: ubuntu-latest
+          #   rust: stable
+          #   target: x86_64-unknown-linux-musl
+          #   cross: false
+          # - build: linux-armv7
+          #   os: ubuntu-latest
+          #   rust: stable
+          #   target: armv7-unknown-linux-gnueabihf
+          #   linker: gcc-arm-linux-gnueabihf
+          #   cross: true
+          # - build: linux-armv7-musl
+          #   os: ubuntu-latest
+          #   rust: stable
+          #   target: armv7-unknown-linux-musleabihf
+          #   linker: gcc-arm-linux-gnueabihf
+          #   cross: true
+          # - build: linux-arm64
+          #   os: ubuntu-latest
+          #   rust: stable
+          #   target: aarch64-unknown-linux-gnu
+          #   linker: gcc-aarch64-linux-gnu
+          #   cross: true
+          # - build: linux-arm64-musl
+          #   os: ubuntu-latest
+          #   rust: stable
+          #   target: aarch64-unknown-linux-musl
+          #   linker: gcc-aarch64-linux-gnu
+          #   cross: true
+          # # macOS
+          # - build: macos
+          #   os: macos-latest
+          #   rust: stable
+          #   target: x86_64-apple-darwin
+          #   cross: false
 
     steps:
       - name: Checkout repository
@@ -119,7 +119,7 @@ jobs:
           patch yrs/yffi/Cargo.toml resources/patch/yffi/Cargo.toml.patch
 
       - name: Build (cargo)
-        if: "!matrix.cross"
+        if: !matrix.cross
         run: |
           cd yrs
           RUSTFLAGS="-C target-feature=-crt-static" cargo build --release --target ${{ matrix.target }}
