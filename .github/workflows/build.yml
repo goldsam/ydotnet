@@ -172,6 +172,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: linux-nuget
+          name: ${{ matrix.pkg }}-nuget
           path: |
             NativeAssets/*.nupkg
