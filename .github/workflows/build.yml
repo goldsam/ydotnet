@@ -140,10 +140,19 @@ jobs:
             yrs/target/${{ matrix.target }}/release/*yrs.dylib
 
   pack-nuget:
-    needs: build-native-binaries
     runs-on: ubuntu-latest
+    needs: build-native-binaries
+    
+    strategy:
+      matrix:
+        include:
+          # Windows
+          - pkg: Linux
+          - pkg: Win32
+          - pkg: macOS
+           
     steps:
-
+    
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
@@ -159,7 +168,7 @@ jobs:
       - name: Nuget pack
         run: |
           cd NativeAssets
-          nuget pack YDotNet.NativeAssets.Linux.nuspec
+          nuget pack YDotNet.NativeAssets.${{ matrix.target }}.nuspec
           
       - name: Upload artifacts
         uses: actions/upload-artifact@v3

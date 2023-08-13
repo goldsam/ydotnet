@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+
+    <!-- package -->
+    <id>YDotNet.NativeAssets.Win32</id>
+    <title>YDotNet - Native Assets for Windows</title>
+    <version>0.1.0</version>
+    <description>
+YDotNet provides cross=platform .Net bindings for the Yrs Rust port of Yjs.
+    </description>
+    <summary>
+YDotNet provides cross=platform .Net bindings for the Yrs Rust port of Yjs.
+    </summary>
+    <projectUrl>https://github.com/LSViana/ydotnet/tree/main/YDotNet</projectUrl>
+    <!--<iconUrl></iconUrl>-->
+    <tags>Yrs Yjs offline-first peer-to-peer decentralized realtime p2p collaboration shared-editing collarative-editing conflict-free CRDT distributed cross-platform</tags>
+    <!-- legal -->
+    <licenseUrl>https://github.com/LSViana/ydotnet/LICENSE</licenseUrl>
+    <authors>Lucas Viana</authors>
+    <owners>Lucas Viana</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <!--<copyright>not for me to decide.</copyright>-->
+
+    <!--
+    <dependencies>
+      <group targetFramework="net462">
+        <dependency id="YDotNet" version="1.0.0" />
+      </group>
+      <group targetFramework="netstandard1.3">
+        <dependency id="YDotNet" version="1.0.0" />
+      </group>
+      <group targetFramework="netcoreapp3.1">
+        <dependency id="YDotNet" version="1.0.0" />
+      </group>
+      <group targetFramework="net6.0">
+        <dependency id="YDotNet" version="1.0.0" />
+      </group>
+    </dependencies>
+    -->
+  </metadata>
+  <files>
+    <!-- the build bits -->
+    <file src="YDotNet.NativeAssets.Win32.targets" target="build/YDotNet.NativeAssets.Win32.targets" />
+    <file src="YDotNet.NativeAssets.shim.targets" target="buildMultiTargeting/YDotNet.NativeAssets.Win32.targets" />
+    <file src="YDotNet.NativeAssets.shim.targets" target="buildTransitive/YDotNet.NativeAssets.Win32.targets" />
+
+    <!-- native files -->
+    <file src="win-x64/yrs.dll" target="runtimes/win-x64/native/yrs.dll" />
+
+    <!-- legal -->
+    <!--<file src="LICENSE" />-->
+  </files>
+</package>
