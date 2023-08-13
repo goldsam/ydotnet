@@ -114,17 +114,20 @@ jobs:
       - name: Clone Yrs repo
         run: |
           git clone https://github.com/y-crdt/y-crdt.git --branch ${YRS_BRANCH} --single-branch yrs
+        shell: bash
 
       - name: Patch yffi/Cargo.toml
         run: |
           patch yrs/yffi/Cargo.toml resources/patch/yffi/Cargo.toml.patch
-
+        shell: bash
+        
       - name: Build (cargo)
         if: "!matrix.cross"
         run: |
           cd yrs
           RUSTFLAGS="-C target-feature=-crt-static" cargo build --release --target ${{ matrix.target }}
-
+        shell: bash
+        
       - name: Build (cross)
         if: matrix.cross
         run: |
