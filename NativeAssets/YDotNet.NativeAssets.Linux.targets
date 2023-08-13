@@ -10,24 +10,24 @@
     <ItemGroup Condition=" '$(ShouldIncludeNativeYrs)' != 'False' ">
 
         <!-- Linux -->
-        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\..\runtimes\linux-x64\native\libyrs.so">
+        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\runtimes\linux-x64\native\libyrs.so">
             <Dir>x64\</Dir>
         </_NativeYrsFile>
-        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\..\runtimes\linux-arm\native\libyrs.so">
+        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\runtimes\linux-arm\native\libyrs.so">
             <Dir>arm\</Dir>
         </_NativeYrsFile>
-        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\..\runtimes\linux-arm64\native\libyrs.so">
+        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\runtimes\linux-arm64\native\libyrs.so">
             <Dir>arm64\</Dir>
         </_NativeYrsFile>
 
         <!-- Linux: Musl -->
-        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\..\runtimes\linux-musl-x64\native\libyrs.so">
+        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\runtimes\linux-musl-x64\native\libyrs.so">
             <Dir>musl-x64\</Dir>
         </_NativeYrsFile>
-        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\..\runtimes\linux-musl-arm\native\libyrs.so">
+        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\runtimes\linux-musl-arm\native\libyrs.so">
             <Dir>musl-arm\</Dir>
         </_NativeYrsFile>
-        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\..\runtimes\linux-musl-arm64\native\libyrs.so">
+        <_NativeYrsFile Include="$(MSBuildThisFileDirectory)..\runtimes\linux-musl-arm64\native\libyrs.so">
             <Dir>musl-arm64\</Dir>
         </_NativeYrsFile>
 

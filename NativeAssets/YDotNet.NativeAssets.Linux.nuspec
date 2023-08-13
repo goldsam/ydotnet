@@ -42,8 +42,8 @@ YDotNet provides cross=platform .Net bindings for the Yrs Rust port of Yjs.
   <files>
     <!-- the build bits -->
     <file src="YDotNet.NativeAssets.Linux.targets" target="build/YDotNet.NativeAssets.Linux.targets" />
-    <file src="YDotNet.NativeAssets.Linux.shim.targets" target="buildMultiTargeting/YDotNet.NativeAssets.Linux.targets" />
-    <file src="YDotNet.NativeAssets.Linux.shim.targets" target="buildTransitive/YDotNet.NativeAssets.Linux.targets" />
+    <file src="YDotNet.NativeAssets.shim.targets" target="buildMultiTargeting/YDotNet.NativeAssets.Linux.targets" />
+    <file src="YDotNet.NativeAssets.shim.targets" target="buildTransitive/YDotNet.NativeAssets.Linux.targets" />
 
     <!-- native files -->
     <file src="linux-x64/libyrs.so" target="runtimes/linux-x64/native/libyrs.so" />
