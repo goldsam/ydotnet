@@ -137,3 +137,18 @@ jobs:
             yrs/target/${{ matrix.target }}/release/*yrs.so
             yrs/target/${{ matrix.target }}/release/*yrs.dylib
 
+  pack-nuget:
+    needs: build-native-binaries
+    runs-on: ubuntu-latest
+    steps:
+     
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: ./NativeAssets
+
+      - name: Nuget pack
+        run: |
+          cd NativeAssets
+          nuget pack YDotNet.NativeAssets.Linux.nuspec
+          
