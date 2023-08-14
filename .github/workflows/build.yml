@@ -13,9 +13,10 @@ on:
   #   branches: [ main ]
 
 env:
-  YRS_BRANCH: release-v0.16.10
+  YRS_REPO: https://github.com/LSViana/y-crdt
+  YRS_BRANCH: main
   CARGO_TERM_COLOR: always
-
+  
 jobs:
 
   # Based on https://www.rohanjain.in/cargo-cross/
@@ -113,7 +114,7 @@ jobs:
 
       - name: Clone Yrs repo
         run: |
-          git clone https://github.com/y-crdt/y-crdt.git --branch ${YRS_BRANCH} --single-branch yrs
+          git clone ${YRS_REPO} --branch ${YRS_BRANCH} --single-branch yrs
         shell: bash
 
       - name: Patch yffi/Cargo.toml
